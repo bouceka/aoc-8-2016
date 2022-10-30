@@ -1,10 +1,10 @@
 # bouceka-aoc-1
 
-[Advent of Code 2016 - Day 8: Two-Factor Authentication]:https://adventofcode.com/2016/day/8
+# [Advent of Code 2016 - Day 8: Two-Factor Authentication](https://adventofcode.com/2016/day/8)
 
 ## Overview of problem
 
-My second AOC task is the [day 8]:[https://adventofcode.com/2016/day/8] from 2016. I try to display a specific
+My second AOC task is the [day 8](https://adventofcode.com/2016/day/8) from 2016. I try to display a specific
 word on a 50x6px display.
 The display shows two types of characters `#` and `.`. I try to move the `#` in the way it displays a word.
 Like so:
@@ -101,6 +101,7 @@ There are some parts I was not sure if I used Kotlin correctly, like on line
 4 `val grid = List(6) { lines.toMutableList() }.toMutableList()`. When I tried to make `lines` mutable on the same line
 with initialization, it didn't work then. Despite this little issue it still made my code easier than looping the array
 by adding the `#`.
+
 Now, I understand that this kind of code challenge tests my knowledge of strings. Without operations like `.split()`
 , `.trim()`, `.toInt()`, it would be tough to solve these tasks.
 
