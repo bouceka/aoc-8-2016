@@ -1,11 +1,12 @@
 fun main() {
 	fun part1(input: List<String>) {
-		val lines = List(50) { '.' } // initialize the lines
-		val grid = List(6) { lines.toMutableList() }.toMutableList() // thank Ash for this heck ;-)
+		val cells = List(50) { '.' } // initialize the lines
+		val grid = List(6) { cells.toMutableList() }.toMutableList() // thank Ash for this heck ;-)
 
 		input.forEach { it -> // iterate the input
-			val line = it.trim() // remove potential spaces around the string
-			val words = line.split(" ") // make a list of instructions per line
+			val instruction = it.trim() // remove potential spaces around the string
+			val words = instruction.split(" ") // make a list of instructions per line
+			println(instruction)
 			if (words.first() == "rect") { // get the first operation
 				val (rangeY, rangeX) = words[1].split("x") // destructing dimension
 				for (y in 0 until rangeY.toInt() ) {
@@ -14,18 +15,18 @@ fun main() {
 					}
 				}
 			} else if (words.first() == "rotate") {
-				val (direction, ln) = words[2].split("=") // destruct direction X or Y and line could be horizontal or vertical
-				val line = ln.toInt() // parse into Int
-				val by = words.last().toInt() // number of pixels we have to shift the line
-				if (direction == "x") { // column
+				val direction = words[1]
+				val line = words[2].split("=")[1].toInt() // parse into Int
+				val delta = words.last().toInt() // number of pixels we have to shift the line
+				if (direction == "column") { // column
 					val column = List(6) { grid[it][line] } // save a column to change
 					for (x in 0 until 6) {
-						grid[x][line] = column[(x - by + 6) % 6] // iterate through the saved array and shift by the modulo
+						grid[x][line] = column[(x - delta + 6) % 6] // iterate through the saved array and shift by the modulo
 					}
-				} else if (direction == "y") { // row
+				} else if (direction == "row") { // row
 					val row = List(50) { grid[line][it] }
 					for (y in 0 until 50) {
-						grid[line][y] = row[(y - by + 50) % 50]
+						grid[line][y] = row[(y - delta + 50) % 50]
 					}
 				}
 
